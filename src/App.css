@@ -48,16 +48,11 @@ h1 span, .genre { color: var(--accent); }
 .library-heading [role=status] { color: var(--muted); }
 .game-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); grid-auto-rows: 1fr; gap: 22px; }
 .card, .preview { background: #242c37; border: 1px solid #333e55; border-radius: 6px; overflow: hidden; }
-[data-game="star-patrol"] { --accent: #b89cfa; --scene-hue: 12deg; }
-[data-game="sunset-circuit"] { --accent: #ffab86; }
-[data-game="garden-snake"] { --accent: #79d7aa; }
-[data-game="brick-break"] { --accent: #f19aac; --scene-hue: -12deg; }
-[data-game="summit-hop"] { --accent: #80c9ef; --scene-hue: -8deg; }
-[data-game="block-drop"] { --accent: #a3afff; --scene-hue: 14deg; }
+[data-game="stacker"] { --accent: #ffae74; }
 .card { display: flex; flex-direction: column; }
 .card:hover, .card:focus-visible { border-color: var(--accent); }
 .card:hover .arrow, .card:focus-visible .arrow { color: var(--accent); border-color: var(--accent); }
-.scene { filter: saturate(3.2) hue-rotate(var(--scene-hue, 0deg)) brightness(1.08); display: block; width: 100%; height: auto; aspect-ratio: 200 / 84; object-fit: cover; border-bottom: 1px solid #313d54; }
+.scene { display: block; width: 100%; height: auto; aspect-ratio: 200 / 84; object-fit: cover; border-bottom: 1px solid #313d54; }
 .card-copy { position: relative; padding: 16px 19px 20px; }
 .genre { font-size: 11px; letter-spacing: .12em; }
 .card h3 { font-size: 24px; letter-spacing: -.035em; padding-right: 36px; margin: 3px 0 7px; }

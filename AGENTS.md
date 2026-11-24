@@ -44,3 +44,7 @@ Add each game under its own heading so its brief stays with the project after th
 ### Initial arcade hub
 
 This is the main menu that opens when the game starts. The working title, “Personal Arcade,” appears at the top and can be renamed later. A search bar sits beneath the title and above the games. The hub displays every game in a grid of equal-sized, clickable cards that fill the available space. Each card includes a small image showing the game, its name, and a short description. Selecting a card opens that game's own play route. The After Hours theme uses solid slate-navy surfaces, soft white lettering, flat-color illustrations with saturated game-specific accents, and a quiet border highlight on focused or hovered cards.
+
+### Stacker
+
+Build a tower from the bottom to the top of a 12-row, 7-column grid. A three-square block starts at the left and moves slowly back and forth. Click the board or press Space to lock it in place. The first placement forms the base. Each subsequent row keeps only the squares directly above the previous row. Lost squares stay lost. The moving block speeds up as the tower rises, with a maximum width of two squares from row 5 and one square from row 9. A complete miss ends the round. Lock a square on row 12 to win. Height is the number of completed rows. Short 8-bit sounds mark placements, trims, checkpoints, wins, and losses.

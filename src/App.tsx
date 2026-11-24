@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import Stacker from './Stacker'
 import { games } from './games'
 import './App.css'
 
@@ -14,18 +15,8 @@ function App() {
   if (path) {
     return (
       <main className="shell detail">
-        <a className="back" href="/">← Back to arcade</a>
-        {game ? (
-          <article className="preview" data-game={game.slug}>
-            <img className="scene" src={`/arcade/${game.slug}.png`} alt="" />
-            <div className="preview-copy">
-              <span className="genre">{game.genre}</span>
-              <h1>{game.name}</h1>
-              <p>{game.description}</p>
-              <p className="preview-note">This machine is a design preview. Gameplay is coming later.</p>
-            </div>
-          </article>
-        ) : <h1>Machine not found</h1>}
+        <a className="back" href="/">&larr; Back to arcade</a>
+        {game ? <Stacker /> : <h1>Machine not found</h1>}
       </main>
     )
   }
