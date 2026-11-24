@@ -1,0 +1,42 @@
+# Fun Arcade Games
+
+## Project overview
+
+Fun Arcade Games is a web-based game hub where players can browse virtual arcade machines, choose a game, and play it in their computer's browser.
+
+The current scope is single-player games for desktop browsers. Multiplayer is out of scope for now.
+
+## Tech stack
+
+- Use React, TypeScript, and Vite. Use npm for package management.
+- Run `npm run dev` to start the local development server.
+
+## Development workflow
+
+- Always explain the steps. Before starting a task, outline what you plan to do. When you finish, summarize what you did and how you checked it.
+- Before implementing each new feature, create and switch to a dedicated Git branch with a descriptive name, such as `feature/arcade-machine-selection`.
+- When introducing a new pattern or dependency, briefly explain why it fits this project.
+
+### Workflow for a new game
+
+1. Start on the game's dedicated feature branch. If the user already created and switched to it, continue on that branch.
+2. Add a short brief under **Game descriptions** below. Include the game's objective, controls, and what ends a round. Describe scoring or win conditions when relevant.
+3. When the user asks to build the game, implement it from the brief and the prompt.
+4. Run the checks below and summarize the results so the user can review and play the game. Address feedback on the same branch.
+5. After the user approves the game, merge the reviewed commits into `main`.
+
+## Game requirements
+
+- Make each game accessible from the arcade hub. Show its controls before play starts and prioritize keyboard and mouse input.
+- Give players a way to restart the game and return to the hub.
+- When a player leaves a game, stop its audio, timers, and animation loops and remove its input listeners so they don't affect the hub or the next game.
+
+## Checking changes
+
+- After changing code, run `npm run lint` and `npm run build`.
+- For gameplay changes, launch the game from the hub, try the controls, and check the round-ending condition. Restart, return to the hub, and launch the game again to verify it starts fresh.
+- Report which checks you ran and anything that still needs manual testing.
+
+## Game descriptions
+
+Add each game under its own heading so its brief stays with the project after the branch is merged.
