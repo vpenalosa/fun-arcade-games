@@ -40,3 +40,7 @@ The current scope is single-player games for desktop browsers. Multiplayer is ou
 ## Game descriptions
 
 Add each game under its own heading so its brief stays with the project after the branch is merged.
+
+### Initial arcade hub
+
+This is the main menu that opens when the game starts. The working title, “Personal Arcade,” appears at the top and can be renamed later. A search bar sits beneath the title and above the games. The hub displays every game in a grid of equal-sized, clickable cards that fill the available space. Each card includes a small image showing the game, its name, and a short description. Selecting a card opens that game's own play route. The After Hours theme uses solid slate-navy surfaces, soft white lettering, flat-color illustrations with saturated game-specific accents, and a quiet border highlight on focused or hovered cards.
