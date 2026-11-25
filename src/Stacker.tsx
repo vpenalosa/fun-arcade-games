@@ -1,13 +1,13 @@
 import { useEffect, useRef, useState } from 'react'
 import { advance, COLUMNS, freshRound, HEIGHT, place } from './stackerRules'
+import { useArcadeSound } from './useArcadeSound'
 import './Stacker.css'
 
 export default function Stacker() {
   const [round, setRound] = useState(() => freshRound())
-  const [muted, setMuted] = useState(false)
+  const { chime, muted, toggleSound } = useArcadeSound()
   const [message, setMessage] = useState('Stack all 12 rows to win.')
   const board = useRef<HTMLButtonElement>(null)
-  const audio = useRef<AudioContext | null>(null)
   const { phase, moving, rows } = round
   const height = rows.length
 
@@ -16,38 +16,6 @@ export default function Stacker() {
     const timer = window.setInterval(() => setRound(advance), 440 - height * 26)
     return () => window.clearInterval(timer)
   }, [phase, rows, height])
-
-  useEffect(() => {
-    function silence() {
-      if (audio.current) void audio.current.close().catch(() => {})
-      audio.current = null
-    }
-    window.addEventListener('pagehide', silence)
-    return () => {
-      window.removeEventListener('pagehide', silence)
-      silence()
-    }
-  }, [])
-
-  function chime(notes: number[]) {
-    if (muted || !window.AudioContext) return
-    const ctx = audio.current ??= new AudioContext()
-    if (ctx.state === 'suspended') void ctx.resume().catch(() => {})
-    notes.forEach((frequency, i) => {
-      const time = ctx.currentTime + i * 0.09
-      const oscillator = ctx.createOscillator()
-      const gain = ctx.createGain()
-      oscillator.type = 'square'
-      oscillator.frequency.value = frequency
-      gain.gain.setValueAtTime(0.001, time)
-      gain.gain.linearRampToValueAtTime(0.035, time + 0.005)
-      gain.gain.exponentialRampToValueAtTime(0.001, time + 0.085)
-      oscillator.connect(gain).connect(ctx.destination)
-      oscillator.onended = () => { oscillator.disconnect(); gain.disconnect() }
-      oscillator.start(time)
-      oscillator.stop(time + 0.09)
-    })
-  }
 
   function start() {
     setRound(freshRound('playing'))
@@ -106,11 +74,7 @@ export default function Stacker() {
         <div className="stacker-actions">
           <button onClick={start}>{phase === 'ready' ? 'Start game' : 'Restart'}</button>
           <button aria-pressed={!muted} onClick={() => {
-            if (!muted && audio.current) {
-              void audio.current.close().catch(() => {})
-              audio.current = null
-            }
-            setMuted(!muted)
+            toggleSound()
             if (phase === 'playing') board.current?.focus()
           }}>Sound {muted ? 'off' : 'on'}</button>
         </div>

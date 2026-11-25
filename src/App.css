@@ -49,6 +49,7 @@ h1 span, .genre { color: var(--accent); }
 .game-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); grid-auto-rows: 1fr; gap: 22px; }
 .card, .preview { background: #242c37; border: 1px solid #333e55; border-radius: 6px; overflow: hidden; }
 [data-game="stacker"] { --accent: #ffae74; }
+[data-game="pop-the-lock"] { --accent: #ffdb54; }
 .card { display: flex; flex-direction: column; }
 .card:hover, .card:focus-visible { border-color: var(--accent); }
 .card:hover .arrow, .card:focus-visible .arrow { color: var(--accent); border-color: var(--accent); }

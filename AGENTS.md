@@ -48,3 +48,7 @@ This is the main menu that opens when the game starts. The working title, “Per
 ### Stacker
 
 Build a tower from the bottom to the top of a 12-row, 7-column grid. A three-square block starts at the left and moves slowly back and forth. Click the board or press Space to lock it in place. The first placement forms the base. Each subsequent row keeps only the squares directly above the previous row. Lost squares stay lost. The moving block speeds up as the tower rises, with a maximum width of two squares from row 5 and one square from row 9. A complete miss ends the round. Lock a square on row 12 to win. Height is the number of completed rows. Short 8-bit sounds mark placements, trims, checkpoints, wins, and losses.
+
+### Pop the Lock
+
+Click the play area or press Space to start a 50-piece lock. Tap again when the red marker overlaps the yellow dot. Each hit plays a coin chime and clears one piece. If pieces remain, the marker reverses and a new dot appears ahead. The marker speeds up after the 10th, 20th, 30th, and 40th hits. Tapping early or passing the dot ends the attempt. Every retry starts with 50 pieces at the slowest speed. Clear all 50 to open the lock.

@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import Stacker from './Stacker'
 import { games } from './games'
 import './App.css'
 
@@ -16,7 +15,7 @@ function App() {
     return (
       <main className="shell detail">
         <a className="back" href="/">&larr; Back to arcade</a>
-        {game ? <Stacker /> : <h1>Machine not found</h1>}
+        {game ? <game.Game /> : <h1>Machine not found</h1>}
       </main>
     )
   }
