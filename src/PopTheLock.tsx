@@ -7,6 +7,8 @@ const HIT_ANGLE = Math.asin((0.04 + 0.016) / 0.39) * 180 / Math.PI
 const LOCK_SIZE = 25
 const HITS_PER_SPEED = 5
 const SPEEDS = [96, 120, 144, 168, 192]
+const BURST_CHANCE = 0.12
+const MAX_BURST_HITS = 5
 
 function speedIndex(remaining: number) {
   return Math.min(SPEEDS.length - 1, Math.floor((LOCK_SIZE - remaining) / HITS_PER_SPEED))
@@ -20,12 +22,13 @@ type Round = {
   angle: number
   direction: number
   distance: number
+  burstTargets: number[] | null
   startedAt: number
 }
 
 const initial: Round = {
   phase: 'ready', remaining: LOCK_SIZE, angle: 0,
-  direction: 1, distance: 95, startedAt: 0,
+  direction: 1, distance: 95, startedAt: 0, burstTargets: null,
 }
 
 // Distance along this leg keeps timing continuous even across twelve o'clock.
@@ -35,6 +38,27 @@ function traveled(round: Round, now: number) {
 
 function nextDistance() {
   return 55 + Math.random() * 190
+}
+
+function nextTarget(round: Round, angle: number) {
+  const direction = -round.direction
+  const hitsLeft = round.remaining - 1
+  let targets = round.burstTargets
+  if (targets === null && hitsLeft >= 2 && Math.random() < BURST_CHANCE) {
+    const maxLength = Math.min(MAX_BURST_HITS, hitsLeft)
+    const length = 2 + Math.floor(Math.random() * (maxLength - 1))
+    // Alternate ends of the same arc so every reversal leads toward the next dot.
+    targets = Array.from({ length }, (_, i) => {
+      const offset = (i % 2 === 0 ? 55 : 5) + Math.random() * 20
+      return angle + direction * offset
+    })
+  }
+  if (targets?.length) {
+    const [target, ...burstTargets] = targets
+    return { distance: (target - angle) * direction, burstTargets }
+  }
+  // An exhausted burst gets one regular target before another burst can start.
+  return { distance: nextDistance(), burstTargets: null }
 }
 
 export default function PopTheLock() {
@@ -90,7 +114,7 @@ export default function PopTheLock() {
       setRound({ ...round, phase: 'open', angle, distance: round.distance - distance, remaining: 0 })
     } else {
       setRound({ ...round, angle, remaining: remaining - 1, direction: -round.direction,
-        distance: nextDistance(), startedAt: now })
+        ...nextTarget(round, angle), startedAt: now })
     }
   }
 

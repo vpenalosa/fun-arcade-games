@@ -52,3 +52,5 @@ Build a tower from the bottom to the top of a 12-row, 7-column grid. A three-squ
 ### Pop the Lock
 
 Click the play area or press Space to start a 25-piece lock. Tap again when the red marker overlaps the yellow dot. Each hit plays a coin chime and clears one piece. If pieces remain, the marker reverses and a new dot appears ahead. The marker speeds up after the 5th, 10th, 15th, and 20th hits. Tapping early or passing the dot ends the attempt. Every retry starts with 25 pieces at the slowest speed. Clear all 25 to open the lock.
+
+After a regular hit with at least two pieces left, there is a 12% chance of a burst. A burst places 2–5 consecutive dots within the same quarter of the dial, then returns to regular spacing.
