@@ -4,11 +4,12 @@ import './PopTheLock.css'
 
 // The dot and marker span 8% and 3.2% of the dial along a 39%-radius orbit.
 const HIT_ANGLE = Math.asin((0.04 + 0.016) / 0.39) * 180 / Math.PI
-const LOCK_SIZE = 50
+const LOCK_SIZE = 25
+const HITS_PER_SPEED = 5
 const SPEEDS = [96, 120, 144, 168, 192]
 
 function speedIndex(remaining: number) {
-  return Math.min(SPEEDS.length - 1, Math.floor((LOCK_SIZE - remaining) / 10))
+  return Math.min(SPEEDS.length - 1, Math.floor((LOCK_SIZE - remaining) / HITS_PER_SPEED))
 }
 
 type Phase = 'ready' | 'playing' | 'early' | 'late' | 'open'
@@ -100,7 +101,7 @@ export default function PopTheLock() {
     playing: `${remaining} ${remaining === 1 ? 'hit' : 'hits'} to unlock.`,
     early: "Too early! The marker hadn't reached the dot.",
     late: 'Missed it! The marker passed the dot.',
-    open: 'Lock opened! You hit all 50.',
+    open: `Lock opened! You hit all ${LOCK_SIZE}.`,
   }[phase]
 
   return (
@@ -131,7 +132,7 @@ export default function PopTheLock() {
         <span className="genre">Timing</span>
         <h1 id="lock-title">Pop the Lock</h1>
         <p>Click the dial or press <kbd>Space</kbd> to start. Tap again when the red marker touches the yellow dot.</p>
-        <p>Hit all 50 dots to open the lock. The marker reverses on each hit and speeds up every 10. A miss sends you back to 50.</p>
+        <p>Hit all {LOCK_SIZE} dots to open the lock. The marker reverses on each hit and speeds up every {HITS_PER_SPEED} hits. A miss ends the run.</p>
         <div className="lock-level"><span>Speed</span><strong>{speedIndex(remaining) + 1} / {SPEEDS.length}</strong></div>
         <p role="status">{message}</p>
         <button className="lock-action" onClick={start}>{action}</button>
